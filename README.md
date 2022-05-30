@@ -19,7 +19,7 @@ link:
 https://www.overleaf.com/3378482197kgnbvkccdqhr
 
 
-# Extern Documentation
+# External Documentation
 
 link:
 
