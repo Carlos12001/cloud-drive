@@ -30,6 +30,13 @@ https://estudianteccr-my.sharepoint.com/:w:/g/personal/gennel7_estudiantec_cr/Ec
 
 link:
 
+# White Board
+
+link: 
+
+https://app.whiteboard.microsoft.com/me/whiteboards/8f88da6a-0715-4363-8656-804da8e55135
+
+
 
 
 # Dependencies
