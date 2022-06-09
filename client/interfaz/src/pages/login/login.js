@@ -5,11 +5,29 @@ import Label from "./components/Label/Label";
 import Input from "./components/Input/Input";
 
 const Login = () => {
+
+        function handleChange (name,value,)
+        {
+            if (name==='usuario'){
+                //variable para almacenar
+            }
+        }
+
+
     return(
         <div className='login-container'>
             <Title text = 'Título'/>
             <Label text = 'Usuario'/>
-            <Input/>
+            <Input
+            attribute={{
+                id: 'usuario',
+                name: 'usuario',
+                type: 'text',
+                placeholder: 'Ingrese su usuario'
+
+            }}  
+            handleChange={handleChange}
+            />
             <Label text = 'Contraseña'/>
             <Input/>
         </div>
