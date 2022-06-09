@@ -29,7 +29,7 @@ const Login = () => {
             handleChange={handleChange}
             />
             <Label text = 'Contraseña'/>
-            <Input/>
+            {/* <Input/> */}
         </div>
     ) 
 };
