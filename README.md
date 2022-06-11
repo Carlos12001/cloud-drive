@@ -5,7 +5,7 @@ This project is by:
 - Carlos
 - Carolina
 - Joan
-- Noemi
+- Noemí
 
 
 # Tarea 3
