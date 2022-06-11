@@ -11,6 +11,7 @@ const Login = () => {
     const[user, setUser] = useState('');
     const[password, setPassword] = useState('');
     const[passwordError, setPasswordError] = useState(false);
+    const[ isLogin, setIsLogin ] = useState(false);
 
         function handleChange (name,value,)
         {
@@ -29,10 +30,31 @@ const Login = () => {
         console.log('usuario: ', user)
         console.log('contraseña: ', password)
 
+        function ifMatch(param){
+            if(param.user > 0 && param.password > 0 ){
+                if(param.user === 'Carolina' && param.password === '123456'){
+                    let ac ={user, password};
+                    let account = JSON.stringify(ac);
+                    localStorage.setItem('account',account);
+                    setIsLogin(true);
+                }else{
+                    setIsLogin(false);
+                }
+            }else{
+                setIsLogin(false);
+            }
+        }
+
+
+
+
+
+
+
         function handleSubmit(){
             let account = {user, password}
             if(account){
-                console.log('account: ', account)
+                ifMatch(account);
             }
         };
 
