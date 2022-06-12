@@ -4,9 +4,9 @@
 
 #ifndef COMPRESSION_ALGORITHMS_LZW_H
 #define COMPRESSION_ALGORITHMS_LZW_H
+#include "Compression.h"
 
-
-class LZW {
+class LZW : public Compression{
 
 };
 

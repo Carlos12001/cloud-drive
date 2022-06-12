@@ -5,6 +5,7 @@
 #ifndef COMPRESSION_ALGORITHMS_LZ77_H
 #define COMPRESSION_ALGORITHMS_LZ77_H
 
+#include "Compression.h"
 
 class LZ77 {
 

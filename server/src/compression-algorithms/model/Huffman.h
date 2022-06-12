@@ -4,9 +4,9 @@
 
 #ifndef COMPRESSION_ALGORITHMS_HUFFMAN_H
 #define COMPRESSION_ALGORITHMS_HUFFMAN_H
+#include "Compression.h"
 
-
-class Huffman {
+class Huffman : public Compression{
 
 };
 

@@ -5,8 +5,9 @@
 #ifndef COMPRESSION_ALGORITHMS_LZ78_H
 #define COMPRESSION_ALGORITHMS_LZ78_H
 
+#include "Compression.h"
 
-class LZ78 {
+class LZ78 : public Compression{
 
 };
 
