@@ -54,3 +54,26 @@
     border-radius: 5px;
     margin-left: 10px
 }
+
+.label-alert{
+    font-size: 14px;
+    color: red;
+    background: rgb(224,204,204);
+    width: fit-content;
+    height: fit-content;
+    padding: 5px ;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 10px
+}
+
+.home-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-container h1, .home-container label{
+    color: white;
+}

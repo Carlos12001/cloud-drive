@@ -12,36 +12,42 @@ const Login = () => {
     const[password, setPassword] = useState('');
     const[passwordError, setPasswordError] = useState(false);
     const[ isLogin, setIsLogin ] = useState(false);
+    const [hasError, setHasError] = useState(false);
+
 
         function handleChange (name,value,)
         {
             if (name==='usuario'){
-                setUser(value)
+                setUser(value);
+                setHasError(false);
             }else{
                 if (value.lenght < 6){
                     setPasswordError(true);
+                    setHasError(false);
                 }else{
                     setPasswordError(false);
                     setPassword(value);
+                    setHasError(false);
                 }
                 
             }
         };
-        console.log('usuario: ', user)
-        console.log('contraseña: ', password)
 
         function ifMatch(param){
-            if(param.user > 0 && param.password > 0 ){
+            if(param.user > 0 && param.password.lenght > 0 ){
                 if(param.user === 'Carolina' && param.password === '123456'){
+                    const {user, password} = param;
                     let ac ={user, password};
                     let account = JSON.stringify(ac);
-                    localStorage.setItem('account',account);
+                    localStorage.setItem('account',account); //guarda la info en localStorage
                     setIsLogin(true);
                 }else{
                     setIsLogin(false);
+                    setHasError(true);
                 }
             }else{
                 setIsLogin(false);
+                setHasError(true);
             }
         }
 
@@ -62,8 +68,18 @@ const Login = () => {
 
     return(
         <div className='login-container'>
+            { isLogin ? 
+            <div className='home-container'>
+            <h1>¡Hola, {user}!</h1>
+            <label>Felicitaciones estás logueado</label>
+            </div>
+            :
             <div className='login-content'>
             <Title text = '¡Bienvenido!'/>
+            {hasError &&
+                <label className='label-alert'>Su contraseña o usuario son inconrrectos o no 
+                    existen en nuestra plataforma</label>
+            }
             <Label text = 'Usuario'/>
             <Input
             attribute={{
@@ -87,7 +103,7 @@ const Login = () => {
             param = {passwordError}
             />
 
-            {passwordError &&  
+            {passwordError &&
             <label className= 'label-error'>
                 Contraseña inválida o incompleta
             </label>
@@ -98,7 +114,8 @@ const Login = () => {
                 </button>
 
             </div>
-        </div>   
+        </div> 
+        }  
     </div>
     ) 
 };
