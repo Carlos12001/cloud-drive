@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 # Add all files
-file(GLOB_RECURSE SOURCE_FILES true "./*.cpp" "./*.h")
+file(GLOB_RECURSE SOURCE_FILES true "*.cpp" "*.h")
 
 # Var PROJECT_SOURCES
 set(PROJECT_SOURCES ${SOURCE_FILES})

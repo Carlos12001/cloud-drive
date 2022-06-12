@@ -1,0 +1,14 @@
+//
+// Created by carlo on 6/12/22.
+//
+
+#ifndef COMPRESSION_ALGORITHMS_LZ78_H
+#define COMPRESSION_ALGORITHMS_LZ78_H
+
+
+class LZ78 {
+
+};
+
+
+#endif //COMPRESSION_ALGORITHMS_LZ78_H

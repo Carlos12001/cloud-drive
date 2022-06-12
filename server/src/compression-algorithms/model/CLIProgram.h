@@ -9,9 +9,9 @@ using namespace std;
 
 class CLIProgram {
 
-    static void errorProgram(string message);
+    static void errorProgram(const string& message);
 
-    static int finishedProgram(int output);
+    static void finishedProgram(int output);
 
 public:
     static void start(int argc, char* argv[]);

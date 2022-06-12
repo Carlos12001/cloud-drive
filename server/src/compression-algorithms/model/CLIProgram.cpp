@@ -6,7 +6,7 @@ void CLIProgram::start(int argc, char **argv) {
 
     if(argc != 3){
         errorProgram("no operation specified");
-        return finishedProgram(-1);
+        finishedProgram(-1);
     }
 
     cout << "Type of compression: " << argv[1] << endl;
@@ -14,8 +14,8 @@ void CLIProgram::start(int argc, char **argv) {
 
     cout << "Path file to compress: " << argv[2] << endl;
 
-
-    return 0;
+    finishedProgram(0);
+    return;
 }
 
 void CLIProgram::finishedProgram(int output) {
@@ -23,7 +23,7 @@ void CLIProgram::finishedProgram(int output) {
     exit(output);
 }
 
-void CLIProgram::errorProgram(string message) {
+void CLIProgram::errorProgram(const string& message) {
     cerr << "\nerror:\n";
     cout<<message<<endl;
 }
