@@ -6,6 +6,7 @@
 #define COMPRESSION_ALGORITHMS_CLI_PROGRAM_H
 #include <iostream>
 using namespace std;
+#include "compresion_h.h"
 
 class CLIProgram {
 
