@@ -154,10 +154,10 @@ string CLIProgram::doCompression(const string &message, int typeCompression) {
             result = LZ77().encode(message);
             break;
         case 2:
-            result = LZ77().encode(message);
+            result = LZ78().encode(message);
             break;
         case 3:
-            result = LZ77().encode(message);
+            result = LZW().encode(message);
             break;
         default:
             result = message;
