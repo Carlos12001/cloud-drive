@@ -34,7 +34,7 @@ void CLIProgram::start(int argc, char **argv) {
     } else if (string(argv[1]) == "huffman") {
         optionCompression = 4;
     } else {
-        errorProgram("the second option only can be\nlz77\nlz78\nlzw\nhuffman");
+        errorProgram(" 0 the second option only can be\nlz77\nlz78\nlzw\nhuffman");
         finishedProgram(-1);
     }
 
@@ -44,7 +44,7 @@ void CLIProgram::start(int argc, char **argv) {
     } else if (string(argv[2]) == "decode") {
         optionMode = 2;
     } else {
-        errorProgram("the second option only can be\nencode\ndecode");
+        errorProgram(" 1 the second option only can be\nencode\ndecode");
         finishedProgram(-1);
     }
 
@@ -86,7 +86,7 @@ void CLIProgram::start(int argc, char **argv) {
         }
         catch (...) {
             fileRead.close();
-            errorProgram("we couldn't open the file with path: " + string(argv[3]));
+            errorProgram("3 we couldn't open the file with path: " + string(argv[3]));
             fatal(string(argv[3]), pathFinal);
             finishedProgram(-1);
         }
@@ -107,13 +107,14 @@ void CLIProgram::start(int argc, char **argv) {
         }
         catch (...) {
             fileWrite.close();
-            errorProgram("we couldn't compress the file with path: " + pathFinal);
+            errorProgram("4 we couldn't compress the file with path: " + pathFinal);
             fatal(string(argv[3]), pathFinal);
+            finishedProgram(-1);
         }
     }
     else {
         try {
-            huffman h(argv[3], pathFinal + ".salida");
+            huffman h(argv[3], pathFinal);
             switch (optionMode) {
                 case 1:
                     h.compress();
@@ -122,13 +123,14 @@ void CLIProgram::start(int argc, char **argv) {
                     h.decompress();
                     break;
                 default:
-                    errorProgram("switch case option mode was failed");
+                    errorProgram("5 switch case option mode was failed");
                     break;
             }
         }
         catch (...) {
-            errorProgram("we couldn't compress the file with path: " + pathFinal);
+            errorProgram("6 we couldn't compress the file with path: " + pathFinal);
             fatal(string(argv[3]), pathFinal);
+            finishedProgram(-1);
         }
         finishedProgram(0);
         return;
@@ -203,5 +205,10 @@ string CLIProgram::doOptionChosen(const string &message, int optionMode, int opt
     return result;
 }
 void CLIProgram::fatal(const string &path, const string &pathFinal) {
-    system(string("mv " + path + " " + pathFinal).c_str());
+    try {
+        system(string("mv " + path + " " + pathFinal).c_str());
+    }
+    catch (...) {
+
+    }
 }
