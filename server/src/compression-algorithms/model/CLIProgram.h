@@ -14,6 +14,10 @@ class CLIProgram {
 
     static void finishedProgram(int output);
 
+    static string doCompression(const string& message, int typeCompression);
+
+    static string doDecompression (const string& message, int typeCompression);
+
 public:
     static void start(int argc, char* argv[]);
 };

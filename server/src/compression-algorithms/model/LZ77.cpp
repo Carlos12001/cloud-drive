@@ -200,7 +200,6 @@ string LZ77::decodeFIle(const string& text) {
     // Initialized variables
     string result, input;
     input = text;
-    int length, char_info_selc = 0;
     vector<string> s_input = split(input, ' ');
     int size = s_input.size();
     for (int i = 0; i < size; ++i)
