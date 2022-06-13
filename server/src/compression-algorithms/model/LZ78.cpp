@@ -172,6 +172,12 @@ string LZ78::decode(const string &text) {
 
     if (result[(int)result.length() - 1] == '0')
         result = result.substr(0, result.size() - 1);
-
+    auto v  = split(result, '0');
+    int size2 = v.size();
+    result = "";
+    for (int i = 0; i < size2; ++i) {
+        result += v[i];
+        if(i<size2-1) result += " ";
+    }
     return result;
 }

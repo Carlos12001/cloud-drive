@@ -77,7 +77,7 @@ void CLIProgram::start(int argc, char **argv) {
             fileRead.open(string(argv[3]), ios::in);
             if (fileRead.is_open()) {
                 while (getline(fileRead, line)) {
-                    if (line != "") { lines.addElement(line); }
+                    if (true) { lines.addElement(line); }
                 }
                 fileRead.close();
             } else {
@@ -99,7 +99,9 @@ void CLIProgram::start(int argc, char **argv) {
             fileWrite.open(pathFinal, ios::out);
             if (fileWrite.is_open()) {
                 for (int i = 0; i < lines.size(); ++i) {
-                    fileWrite << lines.getElement(i);
+                    string output = lines.getElement(i);
+                    output = doOptionChosen(output, optionMode, optionCompression);
+                    fileWrite << output;
                     if (i < lines.size() - 1) fileWrite << "\n";
                 }
                 fileWrite.close();
