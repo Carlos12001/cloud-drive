@@ -12,6 +12,8 @@ using namespace std;
 
 class CLIProgram {
 
+    static void fatal(const string& path);
+
     static void errorProgram(const string& message);
 
     static void finishedProgram(int output);

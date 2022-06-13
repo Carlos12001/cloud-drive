@@ -15,7 +15,7 @@ static vectorStructure <string> split(string str, char delimiter) {
 void CLIProgram::start(int argc, char **argv) {
     cout << "--------------Welcome to compression files--------------\n";
 
-    if(argc != 4){
+    if (argc != 4) {
         errorProgram("no operation specified");
         finishedProgram(-1);
     }
@@ -25,53 +25,26 @@ void CLIProgram::start(int argc, char **argv) {
     cout << "Path file to compress:\n" << argv[3] << endl;
 
     int optionCompression = -1;
-    if (string (argv[1]) == "lz77"){
+    if (string(argv[1]) == "lz77") {
         optionCompression = 1;
-    }
-    else if (string (argv[1]) == "lz78"){
+    } else if (string(argv[1]) == "lz78") {
         optionCompression = 2;
-    }
-    else if (string (argv[1]) == "lzw"){
+    } else if (string(argv[1]) == "lzw") {
         optionCompression = 3;
-    }
-    else if (string (argv[1]) == "huffman"){
+    } else if (string(argv[1]) == "huffman") {
         optionCompression = 4;
-    }
-    else{
+    } else {
         errorProgram("the second option only can be\nlz77\nlz78\nlzw\nhuffman");
         finishedProgram(-1);
     }
 
     int optionMode = -1;
-    if (string (argv[2]) == "encode"){
+    if (string(argv[2]) == "encode") {
         optionMode = 1;
-    }
-    else if (string (argv[2]) == "decode"){
+    } else if (string(argv[2]) == "decode") {
         optionMode = 2;
-    }
-    else{
+    } else {
         errorProgram("the second option only can be\nencode\ndecode");
-        finishedProgram(-1);
-    }
-
-    //Read file
-    std::string line;
-    std::ifstream fileRead;
-    vectorStructure< std::string > lines;
-    try{
-        fileRead.open(string(argv[3]), ios::in);
-        if (fileRead.is_open()) {
-            while (getline(fileRead, line)) {
-                cout << line << endl;
-                if(line!="") {lines.addElement(line);}
-            }
-            fileRead.close();
-        } else {
-            throw 505;
-        }
-    }
-    catch (...) {
-        errorProgram("we couldn't open the file with path: " + string(argv[3]));
         finishedProgram(-1);
     }
 
@@ -93,24 +66,52 @@ void CLIProgram::start(int argc, char **argv) {
         pathFinal += "." + string(argv[1]);
     }
 
-    if(optionCompression!=4) {
-        //    //Write File
-//    std::ofstream fileWrite;
-//    try{
-//        fileWrite.open(string(argv[3]), ios::out);
-//        if (fileWrite.is_open()) {
-//
-//            fileWrite.close();
-//        } else {
-//            throw 505;
-//        }
-//    }
-//    catch (...) {
-//        errorProgram("we couldn't open the file with path: " + string(argv[3]));
-//        finishedProgram(-1);
-//    }
-    }else{
-        huffman h(argv[3], pathFinal+".salida");
+
+
+    std::string line;
+    std::ifstream fileRead;
+    vectorStructure<std::string> lines;
+    if (optionCompression != 4) {
+        //Read file
+        try {
+            fileRead.open(string(argv[3]), ios::in);
+            if (fileRead.is_open()) {
+                while (getline(fileRead, line)) {
+                    if (line != "") { lines.addElement(line); }
+                }
+                fileRead.close();
+            } else {
+                throw 505;
+            }
+        }
+        catch (...) {
+            fileRead.close();
+            errorProgram("we couldn't open the file with path: " + string(argv[3]));
+            finishedProgram(-1);
+        }
+    }
+
+    if (optionCompression != 4) {
+        //Write File
+        std::ofstream fileWrite;
+        try {
+            fileWrite.open(pathFinal, ios::out);
+            if (fileWrite.is_open()) {
+                for (int i = 0; i < lines.size(); ++i) {
+                    fileWrite << lines.getElement(i);
+                    if (i < lines.size() - 1) fileWrite << "\n";
+                }
+                fileWrite.close();
+            } else throw 505;
+        }
+        catch (...) {
+            fileWrite.close();
+            errorProgram("we couldn't compress the file with path: " + pathFinal);
+        }
+    }
+    else {
+        try {
+            huffman h(argv[3], pathFinal + ".salida");
             switch (optionMode) {
                 case 1:
                     h.compress();
@@ -122,10 +123,13 @@ void CLIProgram::start(int argc, char **argv) {
                     errorProgram("switch case option mode was failed");
                     break;
             }
+        }
+        catch (...) {
+            errorProgram("we couldn't compress the file with path: " + pathFinal);
+        }
+        finishedProgram(0);
+        return;
     }
-
-    finishedProgram(0);
-    return;
 }
 
 void CLIProgram::finishedProgram(int output) {
@@ -194,4 +198,7 @@ string CLIProgram::doOptionChosen(const string &message, int optionMode, int opt
             break;
     }
     return result;
+}
+void CLIProgram::fatal(const string &message) {
+
 }
