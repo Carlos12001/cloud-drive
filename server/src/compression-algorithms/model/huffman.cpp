@@ -1,4 +1,4 @@
-#include "huffman.hpp"
+#include "huffman.h"
 
 void huffman::createArr() {
     for (int i = 0; i < 128; i++) {
@@ -26,6 +26,7 @@ int huffman::binToDec(string inStr) {
     return res;
 }
 
+
 string huffman::decToBin(int inNum) {
     string temp = "", res = "";
     while (inNum > 0) {
@@ -41,7 +42,8 @@ string huffman::decToBin(int inNum) {
 
 void huffman::buildTree(char a_code, string& path) {
     Node* curr = root;
-    for (int i = 0; i < path.length(); i++) {
+    int size = path.length();
+    for (int i = 0; i < size; i++) {
         if (path[i] == '0') {
             if (curr->left == NULL) {
                 curr->left = new Node();

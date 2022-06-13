@@ -46,7 +46,7 @@ void CLIProgram::start(int argc, char **argv) {
     if (string (argv[2]) == "encode"){
         optionMode = 1;
     }
-    else if (string (argv[1]) == "decode"){
+    else if (string (argv[2]) == "decode"){
         optionMode = 2;
     }
     else{
@@ -64,8 +64,6 @@ void CLIProgram::start(int argc, char **argv) {
             while (getline(fileRead, line)) {
                 cout << line << endl;
                 if(line!="") {lines.addElement(line);}
-                optionCompression = optionMode++;
-                optionMode = optionCompression++;
             }
             fileRead.close();
         } else {
@@ -95,7 +93,8 @@ void CLIProgram::start(int argc, char **argv) {
         pathFinal += "." + string(argv[1]);
     }
 
-//    //Write File
+    if(optionCompression!=4) {
+        //    //Write File
 //    std::ofstream fileWrite;
 //    try{
 //        fileWrite.open(string(argv[3]), ios::out);
@@ -110,6 +109,20 @@ void CLIProgram::start(int argc, char **argv) {
 //        errorProgram("we couldn't open the file with path: " + string(argv[3]));
 //        finishedProgram(-1);
 //    }
+    }else{
+        huffman h(argv[3], pathFinal+".salida");
+            switch (optionMode) {
+                case 1:
+                    h.compress();
+                    break;
+                case 2:
+                    h.decompress();
+                    break;
+                default:
+                    errorProgram("switch case option mode was failed");
+                    break;
+            }
+    }
 
     finishedProgram(0);
     return;
@@ -131,6 +144,12 @@ string CLIProgram::doCompression(const string &message, int typeCompression) {
         case 1:
             result = LZ77().encode(message);
             break;
+        case 2:
+            result = LZ77().encode(message);
+            break;
+        case 3:
+            result = LZ77().encode(message);
+            break;
         default:
             result = message;
             break;
@@ -143,6 +162,14 @@ string CLIProgram::doDecompression(const string &message, int typeCompression) {
     switch (typeCompression) {
         case 1:
             result = LZ77().decode(message);
+            break;
+
+        case 2:
+            result = LZ78().decode(message);
+            break;
+
+        case 3:
+            result = LZW().decode(message);
             break;
         default:
             result = message;
