@@ -10,8 +10,6 @@ void CLIProgram::start(int argc, char **argv) {
     }
 
     cout << "Type of compression: " << argv[1] << endl;
-
-
     cout << "Path file to compress: " << argv[2] << endl;
 
     finishedProgram(0);

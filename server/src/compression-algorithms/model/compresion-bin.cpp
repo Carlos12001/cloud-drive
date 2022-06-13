@@ -120,15 +120,6 @@ string LZ78(string input, int option);
 
 string LZW(string input, int option);
 
-int testLZ77(){
-    string result = "wacca hola";
-    cout << "Inicio L77 entrada: " << result << endl;
-    result = LZ77(result, 1);
-    cout << "Compresion L77 salida: " << result << endl;
-    result = LZ77(result, 2);
-    cout << "DeCompresion L77 salida: " << result << endl;
-    return 1;
-}
 
 string LZ77(string input, int option){
     // Initialized variables

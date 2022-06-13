@@ -9,9 +9,9 @@ using namespace std;
 
 class Compression {
 public:
-    virtual void encodeFile(string path) = 0;
+    virtual string encodeFile(const string& text) = 0;
 
-    virtual void decodeFIle(string path) = 0;
+    virtual string decodeFIle(const string& text) = 0;
 };
 
 
