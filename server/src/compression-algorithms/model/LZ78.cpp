@@ -11,26 +11,26 @@
 
 using namespace std;
 
-struct Node{
+struct NodeLZ78{
     int index;
     string data;
-    Node *next;
+    NodeLZ78 *next;
 };
 
 
-static void st_Node(Node *head, int index, string data){
+static void st_Node(NodeLZ78 *head, int index, string data){
     head->index = index;
     head->data = data;
     head->next = NULL;
 }
 
-static void insert_Node(Node *head, int index, string data){
-    Node *new_Node = new Node;
+static void insert_Node(NodeLZ78 *head, int index, string data){
+    NodeLZ78 *new_Node = new NodeLZ78;
     new_Node->index = index;
     new_Node->data = data;
     new_Node->next = NULL;
 
-    Node *curr = head;
+    NodeLZ78 *curr = head;
     while (curr != NULL)
     {
         if (curr->next == NULL)
@@ -42,9 +42,9 @@ static void insert_Node(Node *head, int index, string data){
     }
 }
 
-static Node *search_Node(Node *head, string data)
+static NodeLZ78 *search_Node(NodeLZ78 *head, string data)
 {
-    Node *curr = head;
+    NodeLZ78 *curr = head;
     while (curr != NULL)
     {
         if (data.compare(curr->data) == 0)
@@ -55,9 +55,9 @@ static Node *search_Node(Node *head, string data)
     return NULL;
 }
 
-static Node *search_Node(Node *head, int index)
+static NodeLZ78 *search_Node(NodeLZ78 *head, int index)
 {
-    Node *curr = head;
+    NodeLZ78 *curr = head;
     while (curr != NULL)
     {
         if (index == curr->index)
@@ -67,7 +67,6 @@ static Node *search_Node(Node *head, int index)
     }
     return NULL;
 }
-
 
 static vector <string> split(string str, char delimiter) {
     vector<string> internal;
@@ -84,7 +83,7 @@ static vector <string> split(string str, char delimiter) {
 
 string LZ78::encode(const string &text) {
     string input = text;
-    Node *dictionary = new Node;
+    NodeLZ78 *dictionary = new NodeLZ78;
     string word, result;
     int length, last_seen, index = 1;
 
@@ -99,7 +98,7 @@ string LZ78::encode(const string &text) {
         data = input[i];
 
         re_check:
-        Node *search = search_Node(dictionary, data);
+        NodeLZ78 *search = search_Node(dictionary, data);
 
         if (search)
         {
@@ -132,7 +131,7 @@ string LZ78::encode(const string &text) {
 
 string LZ78::decode(const string &text) {
     string input = text;
-    Node *dictionary = new Node;
+    NodeLZ78 *dictionary = new NodeLZ78;
     string result;
 
     vector <string> s_input = split(input, ' ');
@@ -149,7 +148,7 @@ string LZ78::decode(const string &text) {
         }
         else
         {
-            Node *serched;
+            NodeLZ78 *serched;
             string get_search = ss_input[1];
             serched = search_Node(dictionary, stoi(ss_input[0]));
             if (serched)
