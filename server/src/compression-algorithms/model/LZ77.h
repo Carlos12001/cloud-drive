@@ -14,9 +14,9 @@ using namespace std;
 
 class LZ77 : public Compression{
 public:
-    string encodeFile(const string& text) override;
+    string encode(const string& text) override;
 
-    string decodeFIle(const string& text) override;
+    string decode(const string& text) override;
 };
 
 

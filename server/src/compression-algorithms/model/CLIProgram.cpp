@@ -9,9 +9,9 @@ void CLIProgram::start(int argc, char **argv) {
         finishedProgram(-1);
     }
 
-    cout << "Type of compression: " << argv[1] << endl;
-    cout << "Option compress: " << argv[2] << endl;
-    cout << "Path file to compress: " << argv[3] << endl;
+    cout << "Type of compression:\n" << argv[1] << endl;
+    cout << "Option compress:\n" << argv[2] << endl;
+    cout << "Path file to compress:\n" << argv[3] << endl;
 
     int optionCompression = -1;
     if (string (argv[1]) == "lz77"){
@@ -43,23 +43,36 @@ void CLIProgram::start(int argc, char **argv) {
         finishedProgram(-1);
     }
 
-    //    try{}
-//    catch (...) {}
+    std::string line;
+    std::ifstream file;
+//    vectorStructure< std::string > lines;
+    try{
+        if(optionMode==1) {
+            file.open(string(argv[3]), ios::in);
+            if (file.is_open()) {
+                while (getline(file, line)) {
+                    cout << line << endl;
+                    optionCompression = optionMode++;
+                    optionMode = optionCompression++;
+//                    line = CLIProgram::doOptionChosen(line, optionMode, optionCompression);
+//                    cout << line << endl;
+//                    line = CLIProgram::doOptionChosen(line, optionMode + 1, optionCompression);
+//                    cout << line << endl;
+//                    lines.addElement(line);
+//                    break;
+                }
+                file.close();
+            } else {
+                throw 505;
+            }
+        }
+    }
+    catch (...) {
+        errorProgram("we couldn't open the file with path: " + string(argv[3]));
+        finishedProgram(-1);
+    }
     //read file
 
-    string text = "Hola como estas";
-
-    switch (optionMode){
-        case 1:
-            doCompression(text, optionCompression);
-            break;
-        case 2:
-            doDecompression(text, optionCompression);
-            break;
-        default:
-            errorProgram("switch case failed");
-            finishedProgram(-1);
-    }
 
     finishedProgram(0);
     return;
@@ -78,8 +91,8 @@ void CLIProgram::errorProgram(const string& message) {
 string CLIProgram::doCompression(const string &message, int typeCompression) {
     string result = message;
     switch (typeCompression) {
-        case 0:
-//            result = LZ77().encodeFile(message);
+        case 1:
+            result = LZ77().encode(message);
             break;
         default:
             result = message;
@@ -91,10 +104,28 @@ string CLIProgram::doCompression(const string &message, int typeCompression) {
 string CLIProgram::doDecompression(const string &message, int typeCompression) {
     string result = message;
     switch (typeCompression) {
-        case 0:
-//            result = LZ77().decodeFIle(message);
+        case 1:
+            result = LZ77().decode(message);
             break;
         default:
+            result = message;
+            break;
+    }
+    return result;
+}
+
+string CLIProgram::doOptionChosen(const string &message, int optionMode, int optionCompression){
+    string result = message;
+
+    switch (optionMode){
+        case 1:
+            result = doCompression(message, optionCompression);
+            break;
+        case 2:
+            result = doDecompression(message, optionCompression);
+            break;
+        default:
+            errorProgram("switch case option mode was failed");
             result = message;
             break;
     }

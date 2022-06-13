@@ -12,7 +12,7 @@ static vector <string> split(string str, char delimiter) {
     return internal;
 }
 
-string LZ77::encodeFile(const string& text) {
+string LZ77::encode(const string& text) {
     string result;
     int length, char_info_selc = 0;
     string input = text;
@@ -196,7 +196,7 @@ string LZ77::encodeFile(const string& text) {
     return result;
 }
 
-string LZ77::decodeFIle(const string& text) {
+string LZ77::decode(const string& text) {
     // Initialized variables
     string result, input;
     input = text;

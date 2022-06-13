@@ -7,6 +7,8 @@
 #include <iostream>
 using namespace std;
 #include "compresion_h.h"
+#include <fstream>
+#include "vectorStructure.h"
 
 class CLIProgram {
 
@@ -17,6 +19,8 @@ class CLIProgram {
     static string doCompression(const string& message, int typeCompression);
 
     static string doDecompression (const string& message, int typeCompression);
+
+    static string doOptionChosen(const string &message, int optionMode, int optionCompression);
 
 public:
     static void start(int argc, char* argv[]);
