@@ -6,9 +6,9 @@
 #define COMPRESSION_ALGORITHMS_CLI_PROGRAM_H
 #include <iostream>
 using namespace std;
-#include "compresion_h.h"
+#include "../model/compresion_h.h"
 #include <fstream>
-#include "vectorStructure.h"
+#include "../utils/vectorStructure.h"
 
 class CLIProgram {
 

@@ -1,5 +1,16 @@
 #include "CLIProgram.h"
 
+static vectorStructure <string> split(string str, char delimiter) {
+    vectorStructure<string> internal;
+    stringstream ss(str); // Turn the string into a stream.
+    string tok;
+
+    while (getline(ss, tok, delimiter)) {
+        internal.addElement(tok);
+    }
+
+    return internal;
+}
 
 void CLIProgram::start(int argc, char **argv) {
     cout << "--------------Welcome to compression files--------------\n";
@@ -43,36 +54,62 @@ void CLIProgram::start(int argc, char **argv) {
         finishedProgram(-1);
     }
 
+    //Read file
     std::string line;
-    std::ifstream file;
-//    vectorStructure< std::string > lines;
+    std::ifstream fileRead;
+    vectorStructure< std::string > lines;
     try{
-        if(optionMode==1) {
-            file.open(string(argv[3]), ios::in);
-            if (file.is_open()) {
-                while (getline(file, line)) {
-                    cout << line << endl;
-                    optionCompression = optionMode++;
-                    optionMode = optionCompression++;
-//                    line = CLIProgram::doOptionChosen(line, optionMode, optionCompression);
-//                    cout << line << endl;
-//                    line = CLIProgram::doOptionChosen(line, optionMode + 1, optionCompression);
-//                    cout << line << endl;
-//                    lines.addElement(line);
-//                    break;
-                }
-                file.close();
-            } else {
-                throw 505;
+        fileRead.open(string(argv[3]), ios::in);
+        if (fileRead.is_open()) {
+            while (getline(fileRead, line)) {
+                cout << line << endl;
+                optionCompression = optionMode++;
+                optionMode = optionCompression++;
+                lines.addElement(line);
             }
+            fileRead.close();
+        } else {
+            throw 505;
         }
     }
     catch (...) {
         errorProgram("we couldn't open the file with path: " + string(argv[3]));
         finishedProgram(-1);
     }
-    //read file
 
+    //Do the final path
+    string pathFinal = string(argv[3]);
+    vectorStructure<string> splitedPath = split(string(argv[3]), '.');
+    string extension =splitedPath.size() >= 1 ? splitedPath.getElement(splitedPath.size()-1) : "";
+    if(extension=="lz77" || extension=="lz78" || extension=="lzw" || extension=="huffman"){
+        splitedPath.pop();
+        pathFinal = "";
+        for(int i = 0; i < splitedPath.size(); i++){
+            if(i==splitedPath.size()-1 && i!=0){
+                pathFinal += ".";
+            }
+            pathFinal += splitedPath.getElement(i);
+        }
+    }
+    else{
+        pathFinal += "." + string(argv[1]);
+    }
+
+//    //Write File
+//    std::ofstream fileWrite;
+//    try{
+//        fileWrite.open(string(argv[3]), ios::out);
+//        if (fileWrite.is_open()) {
+//
+//            fileWrite.close();
+//        } else {
+//            throw 505;
+//        }
+//    }
+//    catch (...) {
+//        errorProgram("we couldn't open the file with path: " + string(argv[3]));
+//        finishedProgram(-1);
+//    }
 
     finishedProgram(0);
     return;
