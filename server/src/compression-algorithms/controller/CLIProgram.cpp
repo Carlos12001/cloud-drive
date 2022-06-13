@@ -63,9 +63,9 @@ void CLIProgram::start(int argc, char **argv) {
         if (fileRead.is_open()) {
             while (getline(fileRead, line)) {
                 cout << line << endl;
+                if(line!="") {lines.addElement(line);}
                 optionCompression = optionMode++;
                 optionMode = optionCompression++;
-                lines.addElement(line);
             }
             fileRead.close();
         } else {
