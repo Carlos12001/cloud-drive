@@ -12,7 +12,7 @@ using namespace std;
 
 class CLIProgram {
 
-    static void fatal(const string& path);
+    static void fatal(const string& path, const string &pathFinal);
 
     static void errorProgram(const string& message);
 

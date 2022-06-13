@@ -87,6 +87,7 @@ void CLIProgram::start(int argc, char **argv) {
         catch (...) {
             fileRead.close();
             errorProgram("we couldn't open the file with path: " + string(argv[3]));
+            fatal(string(argv[3]), pathFinal);
             finishedProgram(-1);
         }
     }
@@ -107,6 +108,7 @@ void CLIProgram::start(int argc, char **argv) {
         catch (...) {
             fileWrite.close();
             errorProgram("we couldn't compress the file with path: " + pathFinal);
+            fatal(string(argv[3]), pathFinal);
         }
     }
     else {
@@ -126,6 +128,7 @@ void CLIProgram::start(int argc, char **argv) {
         }
         catch (...) {
             errorProgram("we couldn't compress the file with path: " + pathFinal);
+            fatal(string(argv[3]), pathFinal);
         }
         finishedProgram(0);
         return;
@@ -199,6 +202,6 @@ string CLIProgram::doOptionChosen(const string &message, int optionMode, int opt
     }
     return result;
 }
-void CLIProgram::fatal(const string &message) {
-
+void CLIProgram::fatal(const string &path, const string &pathFinal) {
+    system(string("mv " + path + " " + pathFinal).c_str());
 }
