@@ -11,11 +11,11 @@ const Login = () => {
     const[user, setUser] = useState('');
     const[password, setPassword] = useState('');
     const[passwordError, setPasswordError] = useState(false);
-    const[ isLogin, setIsLogin ] = useState(false);
+    const[ isLogin, setIsLogin ] = useState(true);
     const [hasError, setHasError] = useState(false);
 
 
-        function handleChange (name,value,)
+        function handleChange (name,value)
         {
             if (name==='usuario'){
                 setUser(value);
@@ -35,12 +35,13 @@ const Login = () => {
 
         function ifMatch(param){
             if(param.user > 0 && param.password.lenght > 0 ){
-                if(param.user === 'Carolina' && param.password === '123456'){
+                if(param.user === 'Mimi' && param.password === '0987654'){
                     const {user, password} = param;
                     let ac ={user, password};
                     let account = JSON.stringify(ac);
                     localStorage.setItem('account',account); //guarda la info en localStorage
                     setIsLogin(true);
+                    
                 }else{
                     setIsLogin(false);
                     setHasError(true);
@@ -49,18 +50,18 @@ const Login = () => {
                 setIsLogin(false);
                 setHasError(true);
             }
-        }
+        };
 
-
-
-
-
+        console.log('usuario: ', user);
+        console.log('contraseña: ', password);
 
 
         function handleSubmit(){
             let account = {user, password}
             if(account){
                 ifMatch(account);
+                console.log('account: ', account);
+                
             }
         };
 
@@ -72,6 +73,15 @@ const Login = () => {
             <div className='home-container'>
             <h1>¡Hola, {user}!</h1>
             <label>Felicitaciones estás logueado</label>
+            <button>
+                Comprimir
+            </button>
+            <button>
+                Cargar
+            </button>
+            <button>
+                Descargar
+            </button>
             </div>
             :
             <div className='login-content'>
@@ -107,6 +117,7 @@ const Login = () => {
             <label className= 'label-error'>
                 Contraseña inválida o incompleta
             </label>
+            
             }
             <div className='submit-button-container'>
                 <button onClick={handleSubmit} className='submit-button-container'>
