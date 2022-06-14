@@ -57,7 +57,6 @@ sudo apt install -y gcc cmake
 sudo apt install -y plantuml doxygen
 ```
 
-
 ```
 sudo apt install -y nodejs npm mongodb-org
 ```
