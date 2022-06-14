@@ -177,7 +177,7 @@ string LZ78::decode(const string &text) {
     result = "";
     for (int i = 0; i < size2; ++i) {
         result += v[i];
-        if(i<size2-1) result += " ";
+        result += " ";
     }
     return result;
 }
