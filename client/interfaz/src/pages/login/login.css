@@ -77,3 +77,36 @@
 .home-container h1, .home-container label{
     color: white;
 }
+
+.compress-button{
+    width: 90%;
+    height: 40px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    background: rgb(7,69,71);
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.download-button{
+    
+    width: 90%;
+    height: 40px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    background: rgb(7,69,71);
+    color: blue;
+    font-size: 14px;
+    font-weight: bold;
+    
+}
+
+.compress-button-container{
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    margin-top: 20px
+} 

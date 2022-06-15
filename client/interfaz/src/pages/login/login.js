@@ -71,15 +71,13 @@ const Login = () => {
         <div className='login-container'>
             { isLogin ? 
             <div className='home-container'>
-            <h1>¡Hola, {user}!</h1>
-            <label>Felicitaciones estás logueado</label>
-            <button>
+            
+            <button className='compress-button'>
+
                 Comprimir
             </button>
-            <button>
-                Cargar
-            </button>
-            <button>
+            
+            <button className='download-button' >
                 Descargar
             </button>
             </div>
@@ -120,7 +118,7 @@ const Login = () => {
             
             }
             <div className='submit-button-container'>
-                <button onClick={handleSubmit} className='submit-button-container'>
+                <button onClick={handleSubmit} className='submit-button'>
                     Ingresar
                 </button>
 
