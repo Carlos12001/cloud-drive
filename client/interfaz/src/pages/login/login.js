@@ -62,6 +62,9 @@ const Login = () => {
         function descargarArchivo(){
             //lo que haga 
         };
+        function BuscarArchivo(){
+            //lo que haga 
+        };
     return(
         <div>
             
@@ -73,7 +76,12 @@ const Login = () => {
                     value={busqueda} 
                     placeholder="Búsqueda por Nombre o Empresa"></input>
 
+                   
+                    <button onClick={BuscarArchivo} className='btn-success'>
+                            Buscar
+                            </button>
                 </div>
+
                 <div className='compress-button-container'>
                     <button onClick={comprimirArchivo} className='compress-button'>
                         Comprimir archivo
