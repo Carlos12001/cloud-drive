@@ -85,6 +85,7 @@
     margin-top: 20px
 } 
 
+
 .download-button-container{
     display: flex;
     justify-content: center;
@@ -104,6 +105,10 @@
     font-weight: bold;
 }
 
+.compress-button:hover{
+    opacity: 0.6
+}
+
 .download-button{
     
     width: 50%;
@@ -116,6 +121,12 @@
     font-size: 14px;
     font-weight: bold;
 }
+
+.download-button:hover{
+    opacity: 0.6
+}
+
+
 
 
 

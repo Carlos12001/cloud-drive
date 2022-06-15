@@ -66,6 +66,14 @@ const Login = () => {
             }
         };
 
+        function comprimirArchivo(){
+            //lo que haga
+        };
+
+        function descargarArchivo(){
+            //lo que haga 
+        };
+
 
 
     return(
@@ -73,12 +81,12 @@ const Login = () => {
             { isLogin ? 
             <div>
                 <div className='compress-button-container'>
-                    <button className='compress-button'>
+                    <button onClick={comprimirArchivo} className='compress-button'>
                         Comprimir archivo
                     </button>
                 </div>
                 <div className='download-button-container'>
-                    <button className='download-button'>
+                    <button onClick={descargarArchivo}className='download-button'>
                         Descargar archivo
                     </button>
                 </div>
