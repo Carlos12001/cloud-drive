@@ -11,7 +11,7 @@ const Login = () => {
     const[user, setUser] = useState('');
     const[password, setPassword] = useState('');
     const[passwordError, setPasswordError] = useState(false);
-    const[ isLogin, setIsLogin ] = useState(true);
+    const[ isLogin, setIsLogin ] = useState(false);
     const [hasError, setHasError] = useState(false);
 
 
@@ -70,16 +70,18 @@ const Login = () => {
     return(
         <div className='login-container'>
             { isLogin ? 
-            <div className='home-container'>
-            
-            <button className='compress-button'>
-
-                Comprimir
-            </button>
-            
-            <button className='download-button' >
-                Descargar
-            </button>
+            <div>
+                <div className='compress-button-container'>
+                    <button className='compress-button'>
+                        Comprimir archivo
+                    </button>
+                </div>
+                <div className='download-button-container'>
+                    <button className='download-button'>
+                        Descargar archivo
+                    </button>
+                </div>
+                
             </div>
             :
             <div className='login-content'>
