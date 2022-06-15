@@ -3,10 +3,6 @@ import './login.css';
 import Title from "./components/Title/Title";
 import Label from "./components/Label/Label";
 import Input from "./components/Input/Input";
-
-
-
-
 const Login = () => {
     
     const[user, setUser] = useState('');
@@ -14,8 +10,7 @@ const Login = () => {
     const[passwordError, setPasswordError] = useState(false);
     const[ isLogin, setIsLogin ] = useState(true);
     const [hasError, setHasError] = useState(false);
-
-
+    const [busqueda, setBusqueda]= useState("");
         function handleChange (name,value)
         {
             if (name==='usuario'){
@@ -33,7 +28,6 @@ const Login = () => {
                 
             }
         };
-
         function ifMatch(param){
             if(param.user > 0 && param.password.lenght > 0 ){
                 if(param.user === 'Mimi' && param.password === '0987654'){
@@ -52,11 +46,8 @@ const Login = () => {
                 setHasError(true);
             }
         };
-
         console.log('usuario: ', user);
         console.log('contraseña: ', password);
-
-
         function handleSubmit(){
             let account = {user, password}
             if(account){
@@ -65,21 +56,24 @@ const Login = () => {
                 
             }
         };
-
         function comprimirArchivo(){
             //lo que haga
         };
-
         function descargarArchivo(){
             //lo que haga 
         };
-
-
-
     return(
         <div>
+            
             { isLogin ? 
             <div>
+                <div className="containerInput"> 
+                    <input 
+                    className="form-control inputBuscar" 
+                    value={busqueda} 
+                    placeholder="Búsqueda por Nombre o Empresa"></input>
+
+                </div>
                 <div className='compress-button-container'>
                     <button onClick={comprimirArchivo} className='compress-button'>
                         Comprimir archivo
@@ -107,7 +101,6 @@ const Login = () => {
                 name: 'usuario',
                 type: 'text',
                 placeholder: 'Ingrese su usuario'
-
             }}  
             handleChange={handleChange}
             />
@@ -122,7 +115,6 @@ const Login = () => {
             handleChange={handleChange}
             param = {passwordError}
             />
-
             {passwordError &&
             <label className= 'label-error'>
                 Contraseña inválida o incompleta
@@ -133,16 +125,12 @@ const Login = () => {
                 <button onClick={handleSubmit} className='submit-button'>
                     Ingresar
                 </button>
-
-            </div>
+</div>
         </div> 
     </div>
             
             }
-
         </div>
-
     ) 
 };
-
 export default Login;
