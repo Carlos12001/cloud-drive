@@ -3,6 +3,7 @@ import './login.css';
 import Title from "./components/Title/Title";
 import Label from "./components/Label/Label";
 import Input from "./components/Input/Input";
+import Upload from "./components/Upload";
 const Login = () => {
     
     const[user, setUser] = useState('');
@@ -11,6 +12,8 @@ const Login = () => {
     const[ isLogin, setIsLogin ] = useState(true);
     const [hasError, setHasError] = useState(false);
     const [busqueda, setBusqueda]= useState("");
+    
+
         function handleChange (name,value)
         {
             if (name==='usuario'){
@@ -63,11 +66,11 @@ const Login = () => {
             //lo que haga 
         };
         function BuscarArchivo(){
-            //lo que haga 
+          
+
         };
     return(
         <div>
-            
             { isLogin ? 
             <div>
                 <div className="containerInput"> 
@@ -81,6 +84,9 @@ const Login = () => {
                             Buscar
                             </button>
                 </div>
+
+                <input type="file" className= "input"/>
+
 
                 <div className='compress-button-container'>
                     <button onClick={comprimirArchivo} className='compress-button'>
