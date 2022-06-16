@@ -3,7 +3,13 @@ const express = require('express');
 const app = express();
 const connection = require("./db");
 const cors = require("cors");
-const songRoutes = require("./routes/songs")
+
+function extracted() {
+    const songRoutes = require("./routes/songs")
+    return songRoutes;
+}
+
+const songRoutes = extracted();
 //database conect
 connection()
 
