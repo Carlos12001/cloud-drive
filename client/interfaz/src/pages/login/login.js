@@ -9,7 +9,7 @@ const Login = () => {
     const[user, setUser] = useState('');
     const[password, setPassword] = useState('');
     const[passwordError, setPasswordError] = useState(false);
-    const[ isLogin, setIsLogin ] = useState(true);
+    const[ isLogin, setIsLogin ] = useState(false);
     const [hasError, setHasError] = useState(false);
     const [busqueda, setBusqueda]= useState("");
     
@@ -51,10 +51,10 @@ const Login = () => {
         };
         console.log('usuario: ', user);
         console.log('contraseña: ', password);
+        
         function handleSubmit(){
             let account = {user, password}
             if(account){
-                ifMatch(account);
                 console.log('account: ', account);
                 
             }
