@@ -25,3 +25,146 @@
 	cursor: pointer;
 	margin-right: 20px;
 }
+
+.login-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background: cadetblue;
+}
+.login-content{
+	width: 85%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: auto;
+	position: absolute;
+}
+.submit-button-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px
+}
+.submit-button{
+	width: 90%;
+	height: 40px;
+	border-radius: 25px;
+	border: none;
+	outline: none;
+	background: rgb(7,69,71);
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+}
+.submit-button:hover{
+	opacity: 0.6
+}
+
+
+.label-error{
+	font-size: 12px;
+	color: red;
+	background: rgb(224,204,204);
+	width: fit-content;
+	height: fit-content;
+	padding: 0 5px ;
+	box-sizing: border-box;
+	border-radius: 5px;
+	margin-left: 10px
+}
+.label-alert{
+	font-size: 14px;
+	color: red;
+	background: rgb(224,204,204);
+	width: fit-content;
+	height: fit-content;
+	padding: 5px ;
+	box-sizing: border-box;
+	border-radius: 5px;
+	margin-bottom: 10px
+}
+.home-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	align-items: left;
+}
+.home-container h1, .home-container label{
+	color: white;
+}
+.compress-button-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px
+}
+.download-button-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px
+}
+.compress-button{
+	width: 50%;
+	height: 40px;
+	border-radius: 25px;
+	border: none;
+	outline: none;
+	background: rgb( 155, 89, 182 );
+	color: black;
+	font-size: 14px;
+	font-weight: bold;
+}
+.compress-button:hover{
+	opacity: 0.6
+}
+.download-button{
+
+	width: 50%;
+	height: 40px;
+	border-radius: 25px;
+	border: none;
+	outline: none;
+	background: rgb( 155, 89, 182 );
+	color: black;
+	font-size: 14px;
+	font-weight: bold;
+}
+.download-button:hover{
+	opacity: 0.6
+}
+
+.containerInput{
+	align-items: center;
+	right: 0;
+	display: flex;
+	justify-content: flex-end;
+	padding-bottom: 25px;
+}
+
+.inputBuscar{
+	align-items: center;
+	width: 20% !important;
+	padding: 10px 20px;
+}
+
+.btn-success{
+	width: 10%;
+	height: 25px;
+	border-radius: 10px;
+	border:none;
+	outline: none;
+	background: rgb(118,215,196);
+	color: black;
+	font-size: 10px;
+	font-weight: bold;
+}
+.btn-success:hover{
+	opacity: 0.6
+}
