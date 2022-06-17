@@ -33,9 +33,10 @@ const Main = () => {
 		event.preventDefault()
 		const reader = new FileReader()
 		reader.onload = async (eventReadFile) => {
-		  	const text = (eventReadFile.target.result);
-			setData({ ...data, ["path"]: "README.md" });
-			setData({ ...data, ["dataFile"]: text });
+			const text = (eventReadFile.target.result);
+			setData({ ...data, path: "README.md"});
+			setData({ ...data, fileData: text});
+			console.log(data);
 			//POP UP
 			try {
 				const url = "http://localhost:8080/api/serverFiles";
@@ -52,8 +53,6 @@ const Main = () => {
 			}
 		};
 		reader.readAsText(event.target.files[0]);
-
-
 	};
 
 	return (

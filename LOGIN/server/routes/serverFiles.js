@@ -13,10 +13,8 @@ router.post("/", async (req, res) => {
                 .status(409)
                 .send({ message: "serverFileMongo with given email already Exist!" });
 
-        const salt = await bcrypt.genSalt(Number(process.env.SALT));
-        const hashPassword = "password"
 
-        await new serverFileMongo({ ...req.body, password: hashPassword }).save();
+        await new serverFileMongo({ ...req.body }).save();
         res.status(201).send({ message: "serverFileMongo created successfully" });
     } catch (error) {
         res.status(500).send({ message: "Internal Server Error" });
