@@ -1,5 +1,6 @@
 import styles from "./styles.module.css";
 import React, {useState} from "react";
+import axios from "axios";
 
 
 const Main = () => {
@@ -8,14 +9,18 @@ const Main = () => {
 		window.location.reload();
 	};
 
+	const [data, setData] = useState({
+		path: "",
+		fileData: "",
+		email: "a@a.com",
+		compression: "lz78"
+	});
 
-	const [fileSelected, setFileSelected] = useState(null);
 	const [busqueda, setBusqueda]= useState("");
-
-	
+	//const filepicker = document.getElementById('fileSelect')
 
 	function comprimirArchivo(){
-		//lo que haga
+		//escoge el tipo de compresion
 	};
 	function descargarArchivo(){
 		//lo que haga
@@ -24,17 +29,32 @@ const Main = () => {
 
 	};
 
-	const onFileChange = (event) => {
-			event.preventDefault()
-			const reader = new FileReader()
-			reader.onload = async (event) => { 
-			  const text = (event.target.result)
-			  console.log(text)
-			  alert(text)
-			};
-			reader.readAsText(event.target.files[0])
-		  
-	  };
+	const onFileChange = async (event) => {
+		event.preventDefault()
+		const reader = new FileReader()
+		reader.onload = async (eventReadFile) => {
+		  	const text = (eventReadFile.target.result);
+			setData({ ...data, ["path"]: "README.md" });
+			setData({ ...data, ["dataFile"]: text });
+			//POP UP
+			try {
+				const url = "http://localhost:8080/api/serverFiles";
+				const { data: res } = await axios.post(url, data);
+				console.log(res.message);
+			} catch (error) {
+				if (
+					error.response &&
+					error.response.status >= 400 &&
+					error.response.status <= 500
+				) {
+					setError(error.response.data.message);
+				}
+			}
+		};
+		reader.readAsText(event.target.files[0]);
+
+
+	};
 
 	return (
 		<div className={styles.main_container}>
@@ -58,7 +78,7 @@ const Main = () => {
 			</div>
 
 			{/* <input type="file" className= "input"/> */}
-			<input color="yellow" type="file" onChange={onFileChange} />
+			<input color="yellow" type="file" id="fileSelect" onChange={onFileChange}  />
 			
 
 
