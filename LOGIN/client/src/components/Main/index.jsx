@@ -17,7 +17,7 @@ const Main = () => {
 	});
 
 	const [busqueda, setBusqueda]= useState("");
-	//const filepicker = document.getElementById('fileSelect')
+	//const filepicker = document.getElementById('fileSelect');
 
 	function comprimirArchivo(){
 		//escoge el tipo de compresion
