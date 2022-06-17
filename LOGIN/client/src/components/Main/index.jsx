@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 import React, {useState} from "react";
 
+
 const Main = () => {
 	const handleLogout = () => {
 		localStorage.removeItem("token");
@@ -8,8 +9,10 @@ const Main = () => {
 	};
 
 
-
+	const [fileSelected, setFileSelected] = useState(null);
 	const [busqueda, setBusqueda]= useState("");
+
+	
 
 	function comprimirArchivo(){
 		//lo que haga
@@ -20,6 +23,18 @@ const Main = () => {
 	function BuscarArchivo(){
 
 	};
+
+	const onFileChange = (event) => {
+			event.preventDefault()
+			const reader = new FileReader()
+			reader.onload = async (event) => { 
+			  const text = (event.target.result)
+			  console.log(text)
+			  alert(text)
+			};
+			reader.readAsText(event.target.files[0])
+		  
+	  };
 
 	return (
 		<div className={styles.main_container}>
@@ -42,7 +57,9 @@ const Main = () => {
 				</button>
 			</div>
 
-			<input type="file" className= "input"/>
+			{/* <input type="file" className= "input"/> */}
+			<input color="yellow" type="file" onChange={onFileChange} />
+			
 
 
 			<div className='compress-button-container'>
