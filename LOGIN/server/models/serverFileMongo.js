@@ -6,7 +6,8 @@ const fileSchema = new mongoose.Schema({
     fileData: { type: String, required: true },
     path: { type: String, required: true },
     email: { type: String, required: true },
-    compression:{type: String, required: true}
+    compression:{type: String, required: true},
+    tags: [String]
 });
 
 fileSchema.methods.generateAuthToken = function () {

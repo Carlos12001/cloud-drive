@@ -1,6 +1,10 @@
 import styles from "./styles.module.css";
 import React, {useState} from "react";
+import Select from 'react-select';
 import axios from "axios";
+import Popup from "../Popup";
+
+
 
 
 const Main = () => {
@@ -10,15 +14,25 @@ const Main = () => {
 	};
 
 	const [data, setData] = useState({
-		path: "",
 		fileData: "",
-		email: "a@a.com",
-		compression: "lz78"
+		path: "",
+		email: "",
+		compression: ""
 	});
 
 	const [busqueda, setBusqueda]= useState("");
 	const [error, setError] = useState("");
-	// const filepicker = document.getElementById('fileSelect');
+	const [buttonPopup, setButtonPopup] = useState(false);
+	const options = [
+		{value: 'LZ78', label: 'LZ78'},
+		{value: 'LZ77', label: 'LZ77'},
+		{value: 'HUFFMAN', label: 'HUFFMAN'},
+	]
+	const [compressSelect, setCompress] = useState("");
+	const [email, setEmail] = useState("");
+	const Compression =()=>(
+		<Select options={options}/>
+	)
 
 	function comprimirArchivo(){
 		//escoge el tipo de compresion
@@ -29,14 +43,26 @@ const Main = () => {
 	function BuscarArchivo(){
 
 	};
+	const handleCrompress =  async (event)=>{
+		setCompress(event.value);
+		console.log(compressSelect);
+
+	}
+	const setEmailFunction = ({ currentTarget: input })=>{
+		setEmail(input.value)
+		console.log(email)
+	}
 
 	const onFileChange = async (event) => {
 		event.preventDefault()
+		const files = event.target.files;
+		console.log(files[0])
+		console.log(files[0].name);
 		const reader = new FileReader()
 		reader.onload = async (eventReadFile) => {
 			const text = (eventReadFile.target.result);
-			setData({ ...data, path: "README.md"});
-			setData({ ...data, fileData: text});
+			const pathFile = (files[0].name);
+			setData({ ...data, path: pathFile,fileData: text,email: email,compression: compressSelect});
 			console.log(data);
 			//POP UP
 			try {
@@ -78,12 +104,13 @@ const Main = () => {
 			</div>
 
 			{/* <input type="file" className= "input"/> */}
-			<input color="yellow" type="file" id="fileSelect" onChange={onFileChange}  />
+			<input color="yellow" type="file" id="fileSelect" onChange={onFileChange} />
+
 			
 
 
 			<div className='compress-button-container'>
-				<button onClick={comprimirArchivo} className='compress-button'>
+				<button onClick={()=>setButtonPopup(true)} className='compress-button'>
 					Comprimir archivo
 				</button>
 			</div>
@@ -92,6 +119,17 @@ const Main = () => {
 					Descargar archivo
 				</button>
 			</div>
+			<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+				<h3>Informacion necesaria</h3>
+				<Select options={options}
+						onChange={handleCrompress}/>
+				<input
+					type="email"
+					placeholder="Email"
+					name="email"
+					onChange={setEmailFunction}
+				/>
+			</Popup>
 		</div>
 	);
 };
