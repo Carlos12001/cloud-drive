@@ -18,8 +18,8 @@ function callCompression(pathFile, typeCompression){
 }
 
 
-function deleteFiles(){
-    exec("cd data && rm -v !(compression.js|compression-algorithms)", (error, stdout, stderr) => {
+function deleteFiles(path,typeCompression){
+    exec("cd data && rm " + path + " " + path + "." + typeCompression, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
@@ -32,7 +32,7 @@ function deleteFiles(){
     });
 }
 
-function compress(pathFile, dataFile, typeCompression){
+function compress(pathFile, dataFile, typeCompression, callback){
     let result = "None";
     fs.writeFile("./data/"+pathFile, dataFile, (err)=>{
         if (err){
@@ -45,14 +45,14 @@ function compress(pathFile, dataFile, typeCompression){
 
     fs.readFile("./data/"+pathFile+"."+typeCompression,(err, buffer)=>{
         if(err){
-            result = "None";
+            console.log(err);
+            callback("None Failed Read");
         }
         else{
-            result = buffer.toString();
+            callback(buffer.toString());
+            deleteFiles(pathFile, typeCompression);
         }
-    })
-
-    return result;
+    });
 }
 
 Compression.compress =  compress;
