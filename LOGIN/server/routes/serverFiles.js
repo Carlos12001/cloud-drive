@@ -9,7 +9,7 @@ router.post("/", async (req, res) => {
             return res.status(400).send({ message: error.details[0].message });
 
         let fileData = req.body.fileData;
-        compression.compress("hellow.txt", fileData, "lz78", (data) => {
+        compression.compress(req.body.path, fileData, req.body.compression, (data) => {
             fileData = data;
             console.log(fileData);
         }).then(async r => {

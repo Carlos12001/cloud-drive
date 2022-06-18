@@ -24,9 +24,10 @@ const Main = () => {
 	const [error, setError] = useState("");
 	const [buttonPopup, setButtonPopup] = useState(false);
 	const options = [
-		{value: 'LZ78', label: 'LZ78'},
-		{value: 'LZ77', label: 'LZ77'},
-		{value: 'HUFFMAN', label: 'HUFFMAN'},
+		{value: 'lz78', label: 'lz78'},
+		{value: 'lz77', label: 'lz77'},
+		{value: 'lzw', label: 'lzw'},
+		{value: 'huffman', label: 'huffman'},
 	]
 	const [compressSelect, setCompress] = useState("");
 	const [email, setEmail] = useState("");
