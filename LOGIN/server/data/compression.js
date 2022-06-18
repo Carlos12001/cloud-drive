@@ -19,19 +19,19 @@ function callCompression(pathFile, typeCompression){
 }
 
 
-function deleteFiles(path,typeCompression){
-    exec("cd data && rm " + path + " " + path + "." + typeCompression, (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-    });
-}
+// function deleteFiles(path,typeCompression){
+//     exec("cd data && rm " + path + " " + path + "." + typeCompression, (error, stdout, stderr) => {
+//         if (error) {
+//             console.log(`error: ${error.message}`);
+//             return;
+//         }
+//         if (stderr) {
+//             console.log(`stderr: ${stderr}`);
+//             return;
+//         }
+//         console.log(`stdout: ${stdout}`);
+//     });
+// }
 
 async function compress(pathFile, dataFile, typeCompression, callback) {
     let result = "None";
@@ -51,7 +51,6 @@ async function compress(pathFile, dataFile, typeCompression, callback) {
             callback("None Failed Read");
         } else {
             callback(buffer.toString());
-            deleteFiles(pathFile, typeCompression);
         }
     });
 }

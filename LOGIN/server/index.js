@@ -23,10 +23,22 @@ const port = process.env.PORT || 8080;
 app.listen(port, console.log(`Listening on port ${port}...`));
 
 const compression = require("./data/compression");
+let fileData=
+        "\n" +
+        "\n" +
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vulputate pharetra lacus, ac pulvinar sapien aliquam at. Nunc sollicitudin dictum hendrerit. Duis convallis luctus ullamcorper. Phasellus sit amet tellus ac tellus varius tincidunt vel vitae diam. Mauris et bibendum nulla. Phasellus congue eros eget gravida vehicula. Morbi et turpis orci. Sed lorem justo, convallis vitae facilisis ut, congue quis neque. Cras eget convallis massa. Mauris a enim nulla. Nulla gravida erat diam, in luctus orci laoreet consectetur";
 
-compression.compress("hellow.txt",
-    "\n" +
-    "\n" +
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vulputate pharetra lacus, ac pulvinar sapien aliquam at. Nunc sollicitudin dictum hendrerit. Duis convallis luctus ullamcorper. Phasellus sit amet tellus ac tellus varius tincidunt vel vitae diam. Mauris et bibendum nulla. Phasellus congue eros eget gravida vehicula. Morbi et turpis orci. Sed lorem justo, convallis vitae facilisis ut, congue quis neque. Cras eget convallis massa. Mauris a enim nulla. Nulla gravida erat diam, in luctus orci laoreet consectetur", "lz78", (data) => {
-        console.log(data.toString());
+
+
+compression.compress("hellow.txt",fileData, "lz78", (data) => {
+    fileData = data;
+    console.log(fileData);
     });
+
+const decompression = require("./data/decompression");
+
+decompression.decompress("hellow.txt", fileData, "lz78", (data) => {
+    fileData = data;
+    console.log("--------------FINAL DECOMPRESS-------------------------");
+    console.log(fileData);
+});
