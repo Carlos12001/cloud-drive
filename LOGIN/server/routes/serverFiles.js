@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
         if (error)
             return res.status(400).send({ message: error.details[0].message });
 
-        var dataFile;
+        let dataFile;
         await new serverFileMongo({ ...req.body }).save();
         res.status(201).send({ message: "serverFileMongo created successfully" });
     } catch (error) {
