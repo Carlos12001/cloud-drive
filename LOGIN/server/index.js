@@ -24,7 +24,9 @@ app.listen(port, console.log(`Listening on port ${port}...`));
 
 const compression = require("./data/compression");
 
-console.log(compression.compress("hellow.txt",
+compression.compress("hellow.txt",
     "\n" +
     "\n" +
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vulputate pharetra lacus, ac pulvinar sapien aliquam at. Nunc sollicitudin dictum hendrerit. Duis convallis luctus ullamcorper. Phasellus sit amet tellus ac tellus varius tincidunt vel vitae diam. Mauris et bibendum nulla. Phasellus congue eros eget gravida vehicula. Morbi et turpis orci. Sed lorem justo, convallis vitae facilisis ut, congue quis neque. Cras eget convallis massa. Mauris a enim nulla. Nulla gravida erat diam, in luctus orci laoreet consectetur", "lz78"));
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vulputate pharetra lacus, ac pulvinar sapien aliquam at. Nunc sollicitudin dictum hendrerit. Duis convallis luctus ullamcorper. Phasellus sit amet tellus ac tellus varius tincidunt vel vitae diam. Mauris et bibendum nulla. Phasellus congue eros eget gravida vehicula. Morbi et turpis orci. Sed lorem justo, convallis vitae facilisis ut, congue quis neque. Cras eget convallis massa. Mauris a enim nulla. Nulla gravida erat diam, in luctus orci laoreet consectetur", "lz78", (data) => {
+        console.log(data.toString());
+    });
