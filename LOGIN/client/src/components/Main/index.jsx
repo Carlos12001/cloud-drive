@@ -54,32 +54,36 @@ const Main = () => {
 	}
 
 	const onFileChange = async (event) => {
-		event.preventDefault()
-		const files = event.target.files;
-		console.log(files[0])
-		console.log(files[0].name);
-		const reader = new FileReader()
-		reader.onload = async (eventReadFile) => {
-			const text = (eventReadFile.target.result);
-			const pathFile = (files[0].name);
-			setData({ ...data, path: pathFile,fileData: text,email: email,compression: compressSelect});
-			console.log(data);
-			//POP UP
-			try {
-				const url = "http://localhost:8080/api/serverFiles";
-				const { data: res } = await axios.post(url, data);
-				console.log(res.message);
-			} catch (error) {
-				if (
-					error.response &&
-					error.response.status >= 400 &&
-					error.response.status <= 500
-				) {
-					setError(error.response.data.message);
+		if(email !== "" && compressSelect !== "") {
+			event.preventDefault()
+			const files = event.target.files;
+			console.log(files[0])
+			console.log(files[0].name);
+			const reader = new FileReader()
+			reader.onload = async (eventReadFile) => {
+				const text = (eventReadFile.target.result);
+				const pathFile = (files[0].name);
+				setData({...data, path: pathFile, fileData: text, email: email, compression: compressSelect});
+				console.log(data);
+				//POP UP
+				try {
+					const url = "http://localhost:8080/api/serverFiles";
+					const {data: res} = await axios.post(url, data);
+					console.log(res.message);
+				} catch (error) {
+					if (
+						error.response &&
+						error.response.status >= 400 &&
+						error.response.status <= 500
+					) {
+						setError(error.response.data.message);
+					}
 				}
-			}
-		};
-		reader.readAsText(event.target.files[0]);
+			};
+			reader.readAsText(event.target.files[0]);
+			setData({...data, path: "", fileData: "", email: "", compression: ""});
+
+		}
 	};
 
 	return (
