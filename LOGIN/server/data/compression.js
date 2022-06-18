@@ -3,6 +3,7 @@ const {exec} = require("child_process");
 const {func} = require("joi");
 const Compression = {}
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
 function callCompression(pathFile, typeCompression){
     exec("cd data && ./compression-algorithms " + typeCompression + " encode "+ pathFile, (error, stdout, stderr) => {
         if (error) {
@@ -32,23 +33,23 @@ function deleteFiles(path,typeCompression){
     });
 }
 
-function compress(pathFile, dataFile, typeCompression, callback){
+async function compress(pathFile, dataFile, typeCompression, callback) {
     let result = "None";
-    fs.writeFile("./data/"+pathFile, dataFile, (err)=>{
-        if (err){
+    let flag = true;
+    fs.writeFile("./data/" + pathFile, dataFile, (err) => {
+        if (err) {
             console.log(err);
-        }
-        else{
+        } else {
             callCompression(pathFile, typeCompression);
+            flag = false;
         }
-    } );
-
-    fs.readFile("./data/"+pathFile+"."+typeCompression,(err, buffer)=>{
-        if(err){
+    });
+    await delay(10);
+    fs.readFile("./data/" + pathFile + "." + typeCompression, (err, buffer) => {
+        if (err) {
             console.log(err);
             callback("None Failed Read");
-        }
-        else{
+        } else {
             callback(buffer.toString());
             deleteFiles(pathFile, typeCompression);
         }
