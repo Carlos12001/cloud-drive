@@ -7,13 +7,7 @@ router.post("/", async (req, res) => {
         if (error)
             return res.status(400).send({ message: error.details[0].message });
 
-        const user = await serverFileMongo.findOne({ email: req.body.email });
-        if (user)
-            return res
-                .status(409)
-                .send({ message: "serverFileMongo with given email already Exist!" });
-
-
+        var dataFile;
         await new serverFileMongo({ ...req.body }).save();
         res.status(201).send({ message: "serverFileMongo created successfully" });
     } catch (error) {
