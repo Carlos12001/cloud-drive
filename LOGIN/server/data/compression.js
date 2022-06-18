@@ -3,7 +3,7 @@ const {exec} = require("child_process");
 const Compression = {}
 
 function callCompression(pathFile, typeCompression){
-    exec("cd data && ls -a", (error, stdout, stderr) => {
+    exec("cd data && ./compression-algorithms " + typeCompression + " encode "+ pathFile, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
@@ -17,7 +17,7 @@ function callCompression(pathFile, typeCompression){
 }
 
 function compress(pathFile, dataFile, typeCompression){
-    fs.writeFile("./"+pathFile, dataFile, (err)=>{
+    fs.writeFile("./data/"+pathFile, dataFile, (err)=>{
         if (err){
             console.log(err);
         }
