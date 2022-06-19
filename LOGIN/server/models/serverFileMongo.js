@@ -10,6 +10,10 @@ const fileSchema = new mongoose.Schema({
     tags: [String]
 });
 
+/**
+ * genra token
+ * @returns {*} token genertado
+ */
 fileSchema.methods.generateAuthToken = function () {
     const token = jwt.sign({ id: this.id }, process.env.JWTPRIVATEKEY, {
         expiresIn: "7d",
@@ -19,6 +23,11 @@ fileSchema.methods.generateAuthToken = function () {
 
 const serverFileMongo = mongoose.model("serverFileMongo", fileSchema);
 
+/**
+ * valida si fue correcto el data
+ * @param data la data de revisar
+ * @returns {Joi.ValidationResult<any>} si fue exitsoso
+ */
 const validate = (data) => {
     const schema = Joi.object({
         fileData: Joi.string().required().label("fileData"),

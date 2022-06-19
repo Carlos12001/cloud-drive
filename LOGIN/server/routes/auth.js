@@ -3,6 +3,9 @@ const { User } = require("../models/user");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
 
+/**
+ * realize ruta del loggin
+ */
 router.post("/", async (req, res) => {
 	try {
 		const { error } = validate(req.body);
@@ -27,6 +30,11 @@ router.post("/", async (req, res) => {
 	}
 });
 
+/**
+ * valida si es correcto el user
+ * @param data la data para reviar
+ * @returns {Joi.ValidationResult<any>} revida si escierto
+ */
 const validate = (data) => {
 	const schema = Joi.object({
 		email: Joi.string().email().required().label("Email"),

@@ -9,6 +9,10 @@ router.post("/", async (req, res) => {
             return res.status(400).send({ message: error.details[0].message });
 
         let fileData = req.body.fileData;
+
+        /**
+         * realiza la compression del archivo
+         */
         compression.compress(req.body.path, fileData, req.body.compression, (data) => {
             fileData = data;
             console.log(fileData);
