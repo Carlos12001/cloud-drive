@@ -23,6 +23,16 @@ const Main = () => {
 	const [busqueda, setBusqueda]= useState("");
 	const [error, setError] = useState("");
 	const [buttonPopup, setButtonPopup] = useState(false);
+	const [buttonDowload, setButtonDowload] = useState(false);
+	const [dId, setdId] = useState("");
+	const [dPath, setdPath] = useState("");
+	const [dData, setdData] = useState("");
+	//id path data
+	const [uData, setuData] = useState({
+		id: "",
+		path: "",
+		data: "",
+	})
 	const options = [
 		{value: 'lz78', label: 'lz78'},
 		{value: 'lz77', label: 'lz77'},
@@ -44,14 +54,44 @@ const Main = () => {
 	function BuscarArchivo(){
 
 	};
+	const handleDowload =  async (event)=>{
+		setuData({...uData,id:dId,path:dPath,data:dData});
+		console.log(uData);
+		event.preventDefault();
+		try {
+			const url = "http://localhost:8080/api/serverDecompression";
+			const {uData: res} = await axios.post(url, uData);
+		} catch (error) {
+			if (
+				error.response &&
+				error.response.status >= 400 &&
+				error.response.status <= 500
+			) {
+				setError(error.response.message);
+				console.log(error.response.message);
+			}
+		}
+	}
 	const handleCrompress =  async (event)=>{
 		setCompress(event.value);
 		console.log(compressSelect);
 
 	}
 	const setEmailFunction = ({ currentTarget: input })=>{
-		setEmail(input.value)
-		console.log(email)
+		setEmail(input.value);
+		console.log(email);
+	}
+	const setdataD = ({ currentTarget: input })=>{
+		setdData(input.value);
+		console.log(dData);
+	}
+	const setpathD = ({ currentTarget: input })=>{
+		setdPath(input.value);
+		console.log(dPath);
+	}
+	const setIdD = ({ currentTarget: input })=>{
+		setdId(input.value);
+		console.log(dId);
 	}
 
 	const onFileChange = async (event) => {
@@ -122,12 +162,24 @@ const Main = () => {
 				</button>
 			</div>
 			<div className='download-button-container'>
-				<button onClick={descargarArchivo} className='download-button'>
+				<button onClick={()=>setButtonDowload(true)} className='download-button'>
 					Descargar archivo
 				</button>
 
 
 			</div>
+			<Popup trigger={buttonDowload} setTrigger={setButtonDowload}>
+				<h3>Dowload</h3>
+				<input
+					type="id"
+					placeholder="id"
+					name="id"
+					onChange={setIdD}
+				/>
+				<button type="submit" onClick={handleDowload}>
+					Submit
+				</button>
+			</Popup>
 			<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
 				<h3>Informacion necesaria</h3>
 				<Select options={options}
