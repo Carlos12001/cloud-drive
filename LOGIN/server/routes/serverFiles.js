@@ -14,7 +14,8 @@ router.post("/", async (req, res) => {
             console.log(fileData);
         }).then(async r => {
             await new serverFileMongo({...req.body, fileData}).save();
-            res.status(201).send({message: "serverFileMongo created successfully"});
+            const fileMongo = await serverFileMongo.find({});
+            res.send({file:fileMongo, message:"send" });
         });
     } catch (error) {
         res.status(500).send({ message: "Internal Server Error" });

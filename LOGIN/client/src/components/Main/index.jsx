@@ -113,7 +113,9 @@ const Main = () => {
 				try {
 					const url = "http://localhost:8080/api/serverFiles";
 					const {data: res} = await axios.post(url, data);
-					console.log(res.message);
+					console.log("a");
+					console.log(res.file);
+					console.log("tmr")
 				} catch (error) {
 					if (
 						error.response &&
