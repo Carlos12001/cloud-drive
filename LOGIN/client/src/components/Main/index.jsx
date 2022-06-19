@@ -3,19 +3,36 @@ import React, {useState} from "react";
 import Select from 'react-select';
 import axios from "axios";
 import Popup from "../Popup";
+import FileSaver from 'file-saver';
 
+// var RNFS=require('react-native-fs');
 
-
+// const makeFile = async (fileName, fileData, callback) =>{
+// 	var path = './'+fileName;
+// 	RNFS.writeFile(path, fileData, 'utf8')
+// 		.then((success) => {
+// 			callback();
+// 		})
+// 		.catch((err) => {
+// 			console.log("write error:"+ err);
+// 		});
+// }
 
 const Main = () => {
 
 	const[fileName, setFileName] = useState('');
 
+	/**
+	 *
+	 */
 	const handleLogout = () => {
 		localStorage.removeItem("token");
 		window.location.reload();
 	};
 
+	/**
+	 *
+	 */
 	const [data, setData] = useState({
 		fileData: "",
 		path: "",
@@ -65,9 +82,11 @@ const Main = () => {
 		try {
 			const url = "http://localhost:8080/api/serverDecompression";
 			const {data: res} = await axios.post(url, uData);
-			console.log("a");
-			console.log(res.data);
-			console.log("tmr")
+			let fd = (res.data[0]).fileData;
+			let p = (res.data[0]).path;
+			var blob = new Blob(fd.split("\n"), {type: "text/plain;charset=utf-8"});
+			FileSaver.saveAs(blob, p);
+
 		} catch (error) {
 			if (
 				error.response &&
@@ -117,9 +136,9 @@ const Main = () => {
 				try {
 					const url = "http://localhost:8080/api/serverFiles";
 					const {data: res} = await axios.post(url, data);
-					console.log(res.file);
+					// console.log(res.file);
 				} catch (error) {
-					if (
+					if(
 						error.response &&
 						error.response.status >= 400 &&
 						error.response.status <= 500
