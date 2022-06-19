@@ -84,7 +84,7 @@ const Main = () => {
 			const {data: res} = await axios.post(url, uData);
 			let fd = (res.data[0]).fileData;
 			let p = (res.data[0]).path;
-			var blob = new Blob(fd.split("\n"), {type: "text/plain;charset=utf-8"});
+			var blob = new Blob([fd], {type: "text/plain;charset=utf-8"});
 			FileSaver.saveAs(blob, p);
 
 		} catch (error) {
