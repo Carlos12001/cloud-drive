@@ -3,14 +3,28 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
+/**
+ * la ventana de logiun
+ * @returns {JSX.Element} la forma de
+ * @constructor
+ */
 const Login = () => {
 	const [data, setData] = useState({ email: "", password: "" });
 	const [error, setError] = useState("");
 
+	/**
+	 * the handle to set dta
+	 * @param input the of the sert
+	 */
 	const handleChange = ({ currentTarget: input }) => {
 		setData({ ...data, [input.name]: input.value });
 	};
 
+	/**
+	 * chunche the envia la a auth
+	 * @param e evento
+	 * @returns {Promise<void>} si cocurre error
+	 */
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {

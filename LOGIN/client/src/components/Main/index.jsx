@@ -18,12 +18,17 @@ import FileSaver from 'file-saver';
 // 		});
 // }
 
+/**
+ * the main of the progran
+ * @returns {JSX.Element} the gui of the menu
+ * @constructor the constror of the class
+ */
 const Main = () => {
 
 	const[fileName, setFileName] = useState('');
 
 	/**
-	 *
+	 * remove token
 	 */
 	const handleLogout = () => {
 		localStorage.removeItem("token");
@@ -31,6 +36,7 @@ const Main = () => {
 	};
 
 	/**
+	 * the inital state of the data
 	 *
 	 */
 	const [data, setData] = useState({
@@ -61,17 +67,35 @@ const Main = () => {
 	]
 	const [compressSelect, setCompress] = useState("");
 	const [email, setEmail] = useState("");
+
+	/**
+	 * select the optioin
+	 * @returns {JSX.Element} if error exust
+	 * @constructor the constructor
+	 */
 	const Compression =()=>(
 		<Select options={options}/>
 	)
 
+	/**
+	 * cambiar el label de la bara
+	 */
 	function cambiarLabel
 	(){
 		//escoge el tipo de compresion
 	};
+
+	/**
+	 * descar el elarchbio
+	 */
 	function descargarArchivo(){
 		//lo que haga
 	};
+
+	/** buscar el archivo
+	 *
+	 * @constructor el constroro
+	 */
 	function BuscarArchivo(){
 
 	};
@@ -119,6 +143,11 @@ const Main = () => {
 		console.log(dId);
 	}
 
+	/**
+	 * realiza el cambio en el fiel
+	 * @param event el eceento
+	 * @returns {Promise<void>} si todo fue correc
+	 */
 	const onFileChange = async (event) => {
 		if(email !== "" && compressSelect !== "") {
 			event.preventDefault()

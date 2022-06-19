@@ -13,10 +13,19 @@ const Signup = () => {
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
 
+	/**
+	 * dert la data
+	 * @param input set el input
+	 */
 	const handleChange = ({ currentTarget: input }) => {
 		setData({ ...data, [input.name]: input.value });
 	};
 
+	/**
+	 * manda la informacion del usuarui
+	 * @param e ecento the event of the class
+	 * @returns {Promise<void>} go is sommething worongs
+	 */
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {

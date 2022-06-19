@@ -3,6 +3,12 @@ import Main from "./components/Main";
 import Signup from "./components/Singup";
 import Login from "./components/Login";
 
+
+/**
+ * the appp of the for the apicattion
+ * @returns {JSX.Element} is go wrong
+ * @constructor the constroctor of the class
+ */
 function App() {
 	const user = localStorage.getItem("token");
 
