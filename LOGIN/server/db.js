@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-
+/***
+ * Se conecta a la base de datos de mongoDb
+ */
 module.exports = () => {
 	const connectionParams = {
 		useNewUrlParser: true,

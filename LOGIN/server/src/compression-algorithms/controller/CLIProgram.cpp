@@ -1,5 +1,10 @@
 #include "CLIProgram.h"
-
+/***
+ *
+ * @param str
+ * @param delimiter
+ * @return
+ */
 static vectorStructure <string> split(string str, char delimiter) {
     vectorStructure<string> internal;
     stringstream ss(str); // Turn the string into a stream.
@@ -11,7 +16,12 @@ static vectorStructure <string> split(string str, char delimiter) {
 
     return internal;
 }
-
+/***
+ *
+ * @param argc
+ * @param argv
+ * Inicia la compression del archivo
+ */
 void CLIProgram::start(int argc, char **argv) {
     cout << "--------------Welcome to compression files--------------\n";
 
@@ -138,17 +148,30 @@ void CLIProgram::start(int argc, char **argv) {
         return;
     }
 }
-
+/***
+ *
+ * @param output
+ * Final del programa
+ */
 void CLIProgram::finishedProgram(int output) {
     cout << "--------------Finish program--------------\n";
     exit(output);
 }
-
+/***
+ *
+ * @param message
+ * mensaje de error
+ */
 void CLIProgram::errorProgram(const string& message) {
     cerr << "\nerror:\n";
     cout<<message<<endl;
 }
-
+/***
+ *
+ * @param message
+ * @param typeCompression
+ * @return resultado de la compression segun el tipo designado
+ */
 string CLIProgram::doCompression(const string &message, int typeCompression) {
     string result = message;
     switch (typeCompression) {
@@ -167,7 +190,12 @@ string CLIProgram::doCompression(const string &message, int typeCompression) {
     }
     return result;
 }
-
+/***
+ *
+ * @param message
+ * @param typeCompression
+ * @return resultado de la descompression segun el tipo designado
+ */
 string CLIProgram::doDecompression(const string &message, int typeCompression) {
     string result = message;
     switch (typeCompression) {
@@ -188,7 +216,13 @@ string CLIProgram::doDecompression(const string &message, int typeCompression) {
     }
     return result;
 }
-
+/***
+ *
+ * @param message
+ * @param optionMode
+ * @param optionCompression
+ * @return resultado de la compression o descompression, segun lo solicitado
+ */
 string CLIProgram::doOptionChosen(const string &message, int optionMode, int optionCompression){
     string result = message;
 
@@ -206,6 +240,10 @@ string CLIProgram::doOptionChosen(const string &message, int optionMode, int opt
     }
     return result;
 }
+/***
+ * @param path
+ * @param pathFinal
+ */
 void CLIProgram::fatal(const string &path, const string &pathFinal) {
     try {
         system(string("mv " + path + " " + pathFinal).c_str());
