@@ -113,16 +113,16 @@ const Main = () => {
 			{/* <input type="file" className= "input"/> */}
 			<input color="yellow" type="file" id="fileSelect" onChange={onFileChange} />
 
-			
+		
 
 
 			<div className='compress-button-container'>
-				<button onClick={()=>setButtonPopup(true)} className='compress-button'>
+				<button onClick={()=>setButtonPopup(true)} className={styles.funtionalities_btn}>
 					Comprimir archivo
 				</button>
 			</div>
 			<div className='download-button-container'>
-				<button onClick={descargarArchivo} className='download-button'>
+				<button onClick={descargarArchivo} className={styles.funtionalities_btn}>
 					Descargar archivo
 				</button>
 
