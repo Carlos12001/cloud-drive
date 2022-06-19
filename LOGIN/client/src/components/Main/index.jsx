@@ -8,6 +8,9 @@ import Popup from "../Popup";
 
 
 const Main = () => {
+
+	const[fileName, setFileName] = useState('');
+
 	const handleLogout = () => {
 		localStorage.removeItem("token");
 		window.location.reload();
@@ -35,7 +38,8 @@ const Main = () => {
 		<Select options={options}/>
 	)
 
-	function comprimirArchivo(){
+	function cambiarLabel
+	(){
 		//escoge el tipo de compresion
 	};
 	function descargarArchivo(){
@@ -46,18 +50,19 @@ const Main = () => {
 	};
 	const handleCrompress =  async (event)=>{
 		setCompress(event.value);
-		console.log(compressSelect);
+		//console.log(compressSelect);
 
 	}
 	const setEmailFunction = ({ currentTarget: input })=>{
 		setEmail(input.value)
-		console.log(email)
+		// console.log(email)
 	}
 
 	const onFileChange = async (event) => {
 		if(email !== "" && compressSelect !== "") {
 			event.preventDefault()
 			const files = event.target.files;
+			setFileName(files[0].name);
 			console.log(files[0])
 			console.log(files[0].name);
 			const reader = new FileReader()
@@ -65,7 +70,8 @@ const Main = () => {
 				const text = (eventReadFile.target.result);
 				const pathFile = (files[0].name);
 				setData({...data, path: pathFile, fileData: text, email: email, compression: compressSelect});
-				console.log(data);
+				console.log('fileData:'+text)
+				//console.log(data);
 				//POP UP
 				try {
 					const url = "http://localhost:8080/api/serverFiles";
@@ -111,7 +117,7 @@ const Main = () => {
 			</div>
 
 			{/* <input type="file" className= "input"/> */}
-			<input color="yellow" type="file" id="fileSelect" onChange={onFileChange} />
+			<input color="yellow" type="file" id="fileSelect" onChange={onFileChange}/>
 
 		
 
@@ -139,6 +145,12 @@ const Main = () => {
 					onChange={setEmailFunction}
 				/>
 			</Popup>
+			<div id= 'HagoLoQueMeDaLaGana'>
+				<ul id= 'NoHagoCaso'></ul> 
+				<p>
+					{fileName}
+				</p>
+			</div>
 		</div>
 	);
 };
