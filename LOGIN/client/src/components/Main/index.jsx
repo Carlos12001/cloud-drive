@@ -63,6 +63,7 @@ const Main = () => {
 			event.preventDefault()
 			const files = event.target.files;
 			setFileName(files[0].name);
+			const solecito = document.getElementById('HagoLoQueMeDaLaGana');
 			console.log(files[0])
 			console.log(files[0].name);
 			const reader = new FileReader()
