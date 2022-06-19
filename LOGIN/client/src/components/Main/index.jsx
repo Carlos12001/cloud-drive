@@ -99,6 +99,12 @@ const Main = () => {
 	function BuscarArchivo(){
 
 	};
+	/***
+	 *
+	 * @param event
+	 * @returns {Promise<void>}
+	 * Funcionalidad del boton de descargar
+	 */
 	const handleDowload =  async (event)=>{
 		setuData({...uData,id:dId,path:dPath,data:dData});
 		console.log(uData);
@@ -122,22 +128,48 @@ const Main = () => {
 			}
 		}
 	}
+	/**
+	 *
+	 * @param event
+	 * @returns {Promise<void>}
+	 * setea el tipo de compression
+	 */
 	const handleCrompress =  async (event)=>{
 		setCompress(event.value);
 		//console.log(compressSelect);
 
 	}
+	/**
+	 *
+	 * @param input
+	 * setea el email utilizado
+	 */
 	const setEmailFunction = ({ currentTarget: input })=>{
 		setEmail(input.value)
 	}
+	/**
+	 *
+	 * @param input
+	 * seteo del dataFile
+	 */
 	const setdataD = ({ currentTarget: input })=>{
 		setdData(input.value);
 		console.log(dData);
 	}
+	/**
+	 *
+	 * @param input
+	 * seteo del pathD
+	 */
 	const setpathD = ({ currentTarget: input })=>{
 		setdPath(input.value);
 		console.log(dPath);
 	}
+	/***
+	 *
+	 * @param input
+	 * setteo del Id para descargar
+	 */
 	const setIdD = ({ currentTarget: input })=>{
 		setdId(input.value);
 		console.log(dId);

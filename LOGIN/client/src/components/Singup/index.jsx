@@ -3,6 +3,11 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 
+/***
+ *
+ * @returns {JSX.Element}
+ * @constructor setea la informacion del usuario para la base de datos
+ */
 const Signup = () => {
 	const [data, setData] = useState({
 		firstName: "",
