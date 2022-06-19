@@ -91,11 +91,6 @@ const Main = () => {
 	function descargarArchivo(){
 		//lo que haga
 	};
-
-	/** buscar el archivo
-	 *
-	 * @constructor el constroro
-	 */
 	function BuscarArchivo(){
 
 	};
@@ -185,6 +180,9 @@ const Main = () => {
 			event.preventDefault()
 			const files = event.target.files;
 			setFileName(files[0].name);
+			const labelInfo = document.getElementById('NoHagoCaso');
+			let docInfo = document.createElement('li');
+
 			console.log(files[0])
 			console.log(files[0].name);
 			const reader = new FileReader()
@@ -197,7 +195,9 @@ const Main = () => {
 				try {
 					const url = "http://localhost:8080/api/serverFiles";
 					const {data: res} = await axios.post(url, data);
-					// console.log(res.file);
+					docInfo.textContent = 'nombre: ' + files[0].name + ' , ' + 'id: ' + res.file[res.file.length-1]._id;
+					labelInfo.appendChild(docInfo);
+					console.log(res.file);
 				} catch (error) {
 					if(
 						error.response &&
@@ -279,10 +279,7 @@ const Main = () => {
 				/>
 			</Popup>
 			<div id= 'HagoLoQueMeDaLaGana'>
-				<ul id= 'NoHagoCaso'></ul>
-				<p>
-					{fileName}
-				</p>
+				<ol id= 'NoHagoCaso'></ol>
 			</div>
 		</div>
 	);
