@@ -38,14 +38,6 @@ const Signup = () => {
 	return (
 		<div className={styles.signup_container}>
 			<div className={styles.signup_form_container}>
-				<div className={styles.left}>
-					<h1>Welcome Back</h1>
-					<Link to="/login">
-						<button type="button" className={styles.white_btn}>
-							Sing in
-						</button>
-					</Link>
-				</div>
 				<div className={styles.right}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
 						<h1>Create Account</h1>
@@ -86,9 +78,14 @@ const Signup = () => {
 							className={styles.input}
 						/>
 						{error && <div className={styles.error_msg}>{error}</div>}
-						<button type="submit" className={styles.green_btn}>
+						<button type="submit" className={styles.orange_btn}>
 							Sing Up
 						</button>
+						<Link to="/login">
+						<button type="button" className={styles.orange_btn}>
+							Return
+						</button>
+					</Link>
 					</form>
 				</div>
 			</div>
