@@ -32,7 +32,15 @@ function callCompression(pathFile, typeCompression){
 //         console.log(`stdout: ${stdout}`);
 //     });
 // }
-
+/**
+ *
+ * @param pathFile
+ * @param dataFile
+ * @param typeCompression
+ * @param callback
+ * @returns {Promise<void>}
+ * comprime un archivo dado mediante un path, y tipo de compression
+ */
 async function compress(pathFile, dataFile, typeCompression, callback) {
     let result = "None";
     let flag = true;

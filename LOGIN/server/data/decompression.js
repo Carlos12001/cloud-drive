@@ -4,7 +4,12 @@ const {func} = require("joi");
 const delay = ms => new Promise(res => setTimeout(res, ms));
 const Decompression = {}
 
-
+/**
+ *
+ * @param pathFile
+ * @param typeDecompression
+ * descomprime el archivo dado mediante un path y tipo de decompression
+ */
 function callDecompression(pathFile, typeDecompression){
     exec("cd data && ./compression-algorithms " + typeDecompression + " decode "+ pathFile + "." + typeDecompression, (error, stdout, stderr) => {
         if (error) {

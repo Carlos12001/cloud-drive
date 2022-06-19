@@ -2,6 +2,9 @@ const router = require("express").Router();
 const { serverFileMongo, validate } = require("../models/serverFileMongo");
 const compression = require("../data/compression");
 
+/***
+ * brinda la data del servido de mongo
+ */
 router.post("/", async (req, res) => {
     try {
         const { error } = validate(req.body);

@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const { serverFileMongo } = require("../models/serverFileMongo");
-
+/***
+ * realiza la ruta de la decompression del archivo alamcenado en la nube
+ */
 router.post("/", async (req, res) => {
     try {
         console.log(req.body);
