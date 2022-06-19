@@ -60,7 +60,10 @@ const Main = () => {
 		event.preventDefault();
 		try {
 			const url = "http://localhost:8080/api/serverDecompression";
-			const {uData: res} = await axios.post(url, uData);
+			const {data: res} = await axios.post(url, uData);
+			console.log("a");
+			console.log(res.data);
+			console.log("tmr")
 		} catch (error) {
 			if (
 				error.response &&

@@ -7,12 +7,10 @@ router.post("/", async (req, res) => {
 
          const file = await serverFileMongo.find({ _id : req.body.id}  );
          console.log(file);
-         if (file)
-             return res
-                 .status(201)
-                 .send({ message: "File found!" });
-
-
+         if (file) {
+             res.send({data: file, message: "File found!"});
+             console.log("File sended");
+         }
 
     } catch (error) {
         res.status(500).send({ message: "Internal Server Error" });
