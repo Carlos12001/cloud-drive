@@ -111,6 +111,8 @@ const Main = () => {
 			let p = (res.data[0]).path;
 			var blob = new Blob([fd], {type: "text/plain;charset=utf-8"});
 			FileSaver.saveAs(blob, p);
+			setuData({...uData,id:"",path:"",data:""});
+			res.data[0]="";
 
 		} catch (error) {
 			if (
